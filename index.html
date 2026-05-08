@@ -192,6 +192,21 @@
             animation: fadeUp 0.8s 0.85s forwards;
         }
 
+        .hero-mobile-photo {
+            display: none;
+            width: 176px;
+            height: 176px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            margin: 0 auto 1.6rem;
+            border: 4px solid rgba(212, 133, 122, 0.5);
+            box-shadow: 0 10px 30px rgba(140, 123, 117, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s 1s forwards;
+        }
+
         .btn-primary {
             display: inline-block;
             padding: 0.9rem 2.2rem;
@@ -629,6 +644,109 @@
             flex-shrink: 0;
         }
 
+        /* ─── TESTIMONIALS ─── */
+        #testimonials {
+            padding: 6rem 5vw;
+            background: var(--cream);
+        }
+
+        .testimonials-intro {
+            max-width: 680px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonials-wrap {
+            max-width: 920px;
+            margin: 2.5rem auto 0;
+            background: var(--white);
+            border-radius: 2rem;
+            border: 1px solid rgba(201, 168, 178, 0.25);
+            box-shadow: 0 18px 65px rgba(140, 123, 117, 0.12);
+            padding: 2rem;
+        }
+
+        .testimonial-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+            line-height: 1.5;
+            color: var(--ink);
+            margin-bottom: 1.1rem;
+        }
+
+        .testimonial-meta {
+            font-size: 0.86rem;
+            color: var(--stone);
+            letter-spacing: 0.02em;
+        }
+
+        .testimonial-name {
+            color: var(--rose-deep);
+            font-weight: 500;
+        }
+
+        .testimonial-nav {
+            margin-top: 1.7rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+        }
+
+        .testimonial-chip {
+            border: 1px solid rgba(201, 168, 178, 0.45);
+            background: var(--white);
+            color: var(--ink-light);
+            border-radius: 999px;
+            padding: 0.45rem 0.9rem;
+            font-size: 0.76rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .testimonial-chip:hover {
+            border-color: rgba(212, 133, 122, 0.6);
+            color: var(--rose-deep);
+        }
+
+        .testimonial-chip.active {
+            background: var(--rose);
+            border-color: var(--rose);
+            color: #fff;
+        }
+
+        .testimonial-controls {
+            margin-top: 1.4rem;
+            display: flex;
+            gap: 0.6rem;
+        }
+
+        .testimonial-arrow {
+            border: 1px solid rgba(201, 168, 178, 0.45);
+            background: var(--white);
+            color: var(--ink-light);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .testimonial-arrow:hover {
+            border-color: rgba(212, 133, 122, 0.6);
+            color: var(--rose-deep);
+            transform: translateY(-1px);
+        }
+
+        .testimonial-card {
+            transition: opacity 0.25s ease;
+        }
+
+        .testimonial-card.changing {
+            opacity: 0.35;
+        }
+
         /* ─── BOOK ─── */
         #book {
             padding: 6rem 5vw;
@@ -780,6 +898,10 @@
                 display: none;
             }
 
+            .hero-mobile-photo {
+                display: block;
+            }
+
             #about {
                 grid-template-columns: 1fr;
             }
@@ -818,6 +940,8 @@
     <!-- HERO -->
     <section id="hero">
         <div class="hero-text">
+            <img class="Tawannaimagethree.jpg"
+                alt="Tawanna portrait" />
             <p class="hero-eyebrow">Professional Development Advisor</p>
             <h1 class="hero-headline">
                 You don't need<br />
@@ -955,7 +1079,7 @@
                 <small>years building high-impact teams</small>
             </div>
             <div class="about-accent2">
-                <strong>Achievement-Driven<br/>Leader & Trusted Advisor</strong>
+                <strong>Achievement-Driven<br />Leader & Trusted Advisor</strong>
                 <small>Connecting people, process, and technology</small>
             </div>
         </div>
@@ -966,36 +1090,81 @@
                 A Strategic Leader Turning Complexity Into Clarity
             </h2>
             <p class="fade-in fade-in-delay-2">
-                With 25 years across sales operations, technology consulting, and people & culture, I’m known as the calm in the storm—a connector, collaborator, and cross-functional leader. My reputation? Transforming complexity into clarity, and delivering scalable business outcomes by bringing together people, processes, and technology.
+                With 25 years across sales operations, technology consulting, and people & culture, I’m known as the
+                calm in the storm—a connector, collaborator, and cross-functional leader. My reputation? Transforming
+                complexity into clarity, and delivering scalable business outcomes by bringing together people,
+                processes, and technology.
             </p>
             <p class="fade-in fade-in-delay-2">
-                I have a track record for building relationships across silos, influencing with or without authority, and driving programs that fuel team performance. I bridge technical and non-technical worlds, shaping narratives that move decisions forward—with a leadership style rooted in empathy, accountability, and purpose.
+                I have a track record for building relationships across silos, influencing with or without authority,
+                and driving programs that fuel team performance. I bridge technical and non-technical worlds, shaping
+                narratives that move decisions forward—with a leadership style rooted in empathy, accountability, and
+                purpose.
             </p>
             <p class="fade-in fade-in-delay-3">
-                Over my career, I've worked with clients and teams through every chapter of business—whether that’s technology systems, analytics, enterprise sales, or people-first change management. My success comes from moving easily between strategy and execution, asking the right questions, and rallying people around a clear vision. Together, we win or lose—but always together!
+                Over my career, I've worked with clients and teams through every chapter of business—whether that’s
+                technology systems, analytics, enterprise sales, or people-first change management. My success comes
+                from moving easily between strategy and execution, asking the right questions, and rallying people
+                around a clear vision. Together, we win or lose—but always together!
             </p>
             <div class="about-values fade-in fade-in-delay-3">
                 <div class="about-value">
                     <div class="value-dot"></div>Trusted Advisor – Build credibility to influence long-term partnerships
                 </div>
                 <div class="about-value">
-                    <div class="value-dot"></div>Consultative Selling – Align solutions to client needs for measurable outcomes
+                    <div class="value-dot"></div>Consultative Selling – Align solutions to client needs for measurable
+                    outcomes
                 </div>
                 <div class="about-value">
-                    <div class="value-dot"></div>Sales Enablement – Lead programs that drive sales velocity & customer engagement
+                    <div class="value-dot"></div>Sales Enablement – Lead programs that drive sales velocity & customer
+                    engagement
                 </div>
                 <div class="about-value">
-                    <div class="value-dot"></div>Executive Communication – Translate big-picture strategy into clear, actionable messaging
+                    <div class="value-dot"></div>Executive Communication – Translate big-picture strategy into clear,
+                    actionable messaging
                 </div>
                 <div class="about-value">
-                    <div class="value-dot"></div>Cross-Functional Collaboration – Drive alignment across technical and non-technical teams
+                    <div class="value-dot"></div>Cross-Functional Collaboration – Drive alignment across technical and
+                    non-technical teams
                 </div>
                 <div class="about-value">
                     <div class="value-dot"></div>Process Optimization – Streamline workflows for efficiency & accuracy
                 </div>
                 <div class="about-value">
-                    <div class="value-dot"></div>Strategic Leadership – Develop high-performing teams & lead through change
+                    <div class="value-dot"></div>Strategic Leadership – Develop high-performing teams & lead through
+                    change
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOK -->
+    <section id="testimonials">
+        <div class="testimonials-intro">
+            <p class="section-label fade-in">Testimonials</p>
+            <h2 class="section-title fade-in fade-in-delay-1">
+                What collaborators and leaders <em>say about Tawanna</em>
+            </h2>
+        </div>
+        <div class="testimonials-wrap fade-in fade-in-delay-2">
+            <div class="testimonial-card" id="testimonialCard">
+                <p class="testimonial-quote" id="testimonialQuote">
+                    "Tawanna has been instrumental in helping our organization develop and evolve our DEI practice. She is an empathetic, approachable leader who inspires trust and confidence."
+                </p>
+                <p class="testimonial-meta" id="testimonialMeta">
+                    <span class="testimonial-name">Krysia Whitley Clarke, MBA</span> | Experienced Finance Leader
+                </p>
+            </div>
+            <div class="testimonial-nav" id="testimonialNav">
+                <button class="testimonial-chip active" data-index="0" type="button">Krysia</button>
+                <button class="testimonial-chip" data-index="1" type="button">Anita</button>
+                <button class="testimonial-chip" data-index="2" type="button">Jamila</button>
+                <button class="testimonial-chip" data-index="3" type="button">Kinnis</button>
+                <button class="testimonial-chip" data-index="4" type="button">Christina</button>
+            </div>
+            <div class="testimonial-controls">
+                <button class="testimonial-arrow" id="testimonialPrev" type="button" aria-label="Previous testimonial">&#8592;</button>
+                <button class="testimonial-arrow" id="testimonialNext" type="button" aria-label="Next testimonial">&#8594;</button>
             </div>
         </div>
     </section>
@@ -1018,6 +1187,8 @@
                 src="https://cal.com/carinne-tzurdecker-rwwlw0?theme=light" frameborder="0" loading="lazy"></iframe>
         </div>
     </section>
+
+    
 
     <!-- FOOTER -->
     <footer>
@@ -1059,6 +1230,61 @@
 
         const grid = document.querySelector('.impact-grid');
         if (grid) cardObserver.observe(grid);
+
+        // Interactive testimonials
+        const testimonials = [
+            {
+                quote: "Tawanna has been instrumental in helping our organization develop and evolve our DEI practice. She is an empathetic, approachable leader who inspires trust and confidence.",
+                meta: "Krysia Whitley Clarke, MBA | Experienced Finance Leader"
+            },
+            {
+                quote: "Tawanna is an exceptional strategic leader with a special spark. Her inclusive approach earned trust across teams and helped deliver impactful programs.",
+                meta: "Anita Verma | Learning Strategy and Business Solutions"
+            },
+            {
+                quote: "Tawanna brings resources together to achieve a common goal and takes complex ideas from concept to completion, on time and within budget.",
+                meta: "Jamila Cowan | Programs and Partnerships Strategy Lead"
+            },
+            {
+                quote: "Tawanna builds instant rapport and leads teams from strategy through execution. Her passion and professionalism make collaboration easy and effective.",
+                meta: "Kinnis Gosha | Executive Director and Computer Science Chair"
+            },
+            {
+                quote: "Tawanna has been a great mentor since college, helping me strengthen my professional brand and lead with confidence.",
+                meta: "Christina Crump | Executive Social Media Manager"
+            }
+        ];
+
+        let testimonialIndex = 0;
+        const testimonialQuote = document.getElementById('testimonialQuote');
+        const testimonialMeta = document.getElementById('testimonialMeta');
+        const testimonialCard = document.getElementById('testimonialCard');
+        const testimonialChips = document.querySelectorAll('.testimonial-chip');
+        const testimonialPrev = document.getElementById('testimonialPrev');
+        const testimonialNext = document.getElementById('testimonialNext');
+
+        function setTestimonial(index) {
+            testimonialIndex = (index + testimonials.length) % testimonials.length;
+            if (!testimonialQuote || !testimonialMeta || !testimonialCard) return;
+            testimonialCard.classList.add('changing');
+            setTimeout(() => {
+                testimonialQuote.textContent = `"${testimonials[testimonialIndex].quote}"`;
+                const [name, role] = testimonials[testimonialIndex].meta.split(' | ');
+                testimonialMeta.innerHTML = `<span class="testimonial-name">${name}</span> | ${role}`;
+                testimonialChips.forEach((chip, i) => chip.classList.toggle('active', i === testimonialIndex));
+                testimonialCard.classList.remove('changing');
+            }, 140);
+        }
+
+        testimonialChips.forEach((chip) => {
+            chip.addEventListener('click', () => {
+                const nextIndex = Number(chip.getAttribute('data-index'));
+                setTestimonial(nextIndex);
+            });
+        });
+
+        if (testimonialPrev) testimonialPrev.addEventListener('click', () => setTestimonial(testimonialIndex - 1));
+        if (testimonialNext) testimonialNext.addEventListener('click', () => setTestimonial(testimonialIndex + 1));
     </script>
 </body>
 
