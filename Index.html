@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tawanna | Professional Development Advisor</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --white: #FDFCFB;
+            --cream: #F7F3EF;
+            --blush: #F2D9D5;
+            --rose: #D4857A;
+            --rose-deep: #B8655A;
+            --mauve: #C9A8B2;
+            --mauve-light: #EDE0E5;
+            --stone: #8C7B75;
+            --ink: #2C2422;
+            --ink-light: #5C4F4B;
+            --gold: #C8A882;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--white);
+            color: var(--ink);
+            overflow-x: hidden;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.4rem 5vw;
+            background: rgba(253, 252, 251, 0.88);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(201, 168, 178, 0.2);
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            color: var(--ink);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.78rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink-light);
+            text-decoration: none;
+            transition: color 0.25s;
+        }
+
+        .nav-links a:hover {
+            color: var(--rose);
+        }
+
+        .nav-cta {
+            background: var(--rose);
+            color: #fff !important;
+            padding: 0.55rem 1.4rem;
+            border-radius: 50px;
+            transition: background 0.25s !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--rose-deep) !important;
+            color: #fff !important;
+        }
+
+        /* ─── HERO ─── */
+        #hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 10rem 5vw 6rem;
+            gap: 4rem;
+            background: linear-gradient(135deg, var(--white) 55%, var(--mauve-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            width: 520px;
+            height: 520px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(242, 217, 213, 0.55) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        #hero::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            left: 30%;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 133, 122, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.73rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--rose);
+            font-weight: 500;
+            margin-bottom: 1.4rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.7s 0.2s forwards;
+        }
+
+        .hero-headline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.8rem, 5vw, 4.6rem);
+            font-weight: 300;
+            line-height: 1.08;
+            color: var(--ink);
+            opacity: 0;
+            transform: translateY(24px);
+            animation: fadeUp 0.8s 0.4s forwards;
+        }
+
+        .hero-headline em {
+            font-style: italic;
+            color: var(--rose-deep);
+        }
+
+        .hero-sub {
+            margin-top: 1.6rem;
+            font-size: 1.02rem;
+            font-weight: 300;
+            line-height: 1.75;
+            color: var(--ink-light);
+            max-width: 420px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s 0.65s forwards;
+        }
+
+        .hero-actions {
+            margin-top: 2.5rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s 0.85s forwards;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            background: var(--rose);
+            color: #fff;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+            box-shadow: 0 4px 24px rgba(212, 133, 122, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--rose-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(212, 133, 122, 0.4);
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.2s;
+        }
+
+        .btn-ghost:hover {
+            color: var(--rose);
+        }
+
+        .btn-ghost svg {
+            transition: transform 0.2s;
+        }
+
+        .btn-ghost:hover svg {
+            transform: translateX(4px);
+        }
+
+        .hero-image-wrap {
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: scale(0.95);
+            animation: fadeScale 1s 0.5s forwards;
+        }
+
+        .hero-image-card {
+            width: 100%;
+            aspect-ratio: 3/4;
+            max-width: 420px;
+            margin: 0 auto;
+            border-radius: 2rem;
+            background: linear-gradient(145deg, var(--blush) 0%, var(--mauve-light) 100%);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 24px 80px rgba(140, 123, 117, 0.2);
+        }
+
+        .hero-image-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(44, 36, 34, 0.08) 100%);
+        }
+
+        .hero-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .hero-placeholder-icon {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: rgba(212, 133, 122, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-placeholder-icon svg {
+            color: var(--rose-deep);
+        }
+
+        .hero-placeholder span {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--rose-deep);
+            opacity: 0.7;
+        }
+
+        .hero-badge {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            background: #fff;
+            border-radius: 1rem;
+            padding: 1rem 1.4rem;
+            box-shadow: 0 8px 40px rgba(140, 123, 117, 0.18);
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+        }
+
+        .hero-badge-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--rose);
+            flex-shrink: 0;
+            box-shadow: 0 0 0 4px rgba(212, 133, 122, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        .hero-badge span {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--ink);
+        }
+
+        .hero-badge small {
+            display: block;
+            font-size: 0.7rem;
+            color: var(--stone);
+            font-weight: 300;
+        }
+
+        /* ─── TRUSTED ─── */
+        #trusted {
+            padding: 4.5rem 5vw;
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .trusted-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #383839dd;
+            font-weight: 500;
+            margin-bottom: 2.2rem;
+        }
+
+        .trusted-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3.5rem;
+            flex-wrap: wrap;
+        }
+
+        .trusted-logo {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #d13056e7;
+            letter-spacing: 0.05em;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            opacity: 0.5;
+        }
+
+        .trusted-logo:hover {
+            color: #d13056;
+            opacity: 1;
+        }
+
+        .trusted-logo svg {
+            width: 18px;
+            height: 18px;
+        }
+
+
+        /* ─── IMPACT PEEK ─── */
+        #impact {
+            padding: 6rem 5vw;
+            background: var(--white);
+        }
+
+        .section-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--rose);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 300;
+            line-height: 1.15;
+            color: var(--ink);
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--rose-deep);
+        }
+
+        .impact-grid {
+            margin-top: 3.5rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .impact-card {
+            background: var(--cream);
+            border-radius: 1.5rem;
+            padding: 2.2rem 2rem;
+            border: 1px solid rgba(201, 168, 178, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .impact-card.visible {
+            animation: fadeUp 0.7s forwards;
+        }
+
+        .impact-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 60px rgba(212, 133, 122, 0.12);
+            border-color: rgba(212, 133, 122, 0.4);
+        }
+
+        .impact-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: var(--blush);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.4rem;
+            color: var(--rose-deep);
+        }
+
+        .impact-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 0.7rem;
+        }
+
+        .impact-card p {
+            font-size: 0.88rem;
+            font-weight: 300;
+            line-height: 1.75;
+            color: var(--stone);
+        }
+
+        .impact-headline {
+            margin-top: 4.5rem;
+            text-align: center;
+            padding: 3.5rem 4rem;
+            background: linear-gradient(135deg, var(--blush) 0%, var(--mauve-light) 100%);
+            border-radius: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impact-headline::after {
+            content: '"';
+            position: absolute;
+            top: -30px;
+            left: 24px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14rem;
+            color: rgba(212, 133, 122, 0.12);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .impact-headline p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.4;
+            color: var(--ink);
+            position: relative;
+            z-index: 1;
+        }
+
+        .impact-headline span {
+            display: block;
+            margin-top: 1rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-style: normal;
+            color: var(--rose);
+            font-weight: 500;
+        }
+
+        /* ─── ABOUT ─── */
+        #about {
+            padding: 6rem 5vw;
+            background: var(--cream);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-image-wrap {
+            position: relative;
+        }
+
+        .about-img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            border-radius: 2rem;
+            background: linear-gradient(160deg, var(--mauve-light) 0%, var(--blush) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 70px rgba(140, 123, 117, 0.18);
+        }
+
+        .about-img-inner {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(212, 133, 122, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--rose-deep);
+        }
+
+        .about-accent {
+            position: absolute;
+            top: 32px;
+            right: -24px;
+            background: #fff;
+            border-radius: 1.2rem;
+            padding: 1rem 1.4rem;
+            box-shadow: 0 8px 40px rgba(140, 123, 117, 0.15);
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .about-accent strong {
+            display: block;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--rose);
+            line-height: 1;
+        }
+
+        .about-accent small {
+            font-size: 0.75rem;
+            color: var(--stone);
+        }
+
+        .about-accent2 {
+            position: absolute;
+            bottom: 32px;
+            left: -24px;
+            background: var(--rose);
+            border-radius: 1.2rem;
+            padding: 1rem 1.4rem;
+            box-shadow: 0 8px 40px rgba(212, 133, 122, 0.3);
+        }
+
+        .about-accent2 strong {
+            display: block;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #fff;
+            line-height: 1.3;
+        }
+
+        .about-accent2 small {
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .about-text .section-label {
+            margin-bottom: 0.8rem;
+        }
+
+        .about-text .section-title {
+            margin-bottom: 1.6rem;
+        }
+
+        .about-text p {
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.85;
+            color: var(--ink-light);
+            margin-bottom: 1.1rem;
+        }
+
+        .about-values {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .about-value {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            font-size: 0.88rem;
+            color: var(--ink-light);
+            font-weight: 400;
+        }
+
+        .value-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--rose);
+            flex-shrink: 0;
+        }
+
+        /* ─── BOOK ─── */
+        #book {
+            padding: 6rem 5vw;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .book-intro {
+            max-width: 560px;
+            margin: 0 auto 3.5rem;
+        }
+
+        .book-intro .section-title {
+            margin-bottom: 1rem;
+        }
+
+        .book-intro p {
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--stone);
+        }
+
+        .booking-iframe-container {
+            max-width: 860px;
+            margin: 0 auto;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 24px 80px rgba(140, 123, 117, 0.14);
+            border: 1px solid rgba(201, 168, 178, 0.25);
+            margin-bottom: 3.5rem;
+        }
+
+        .booking-iframe {
+            width: 100%;
+            min-height: 700px;
+            border: 0;
+            display: block;
+            background: #fff;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            padding: 2.5rem 5vw;
+            background: var(--cream);
+            border-top: 1px solid rgba(212, 133, 122, 0.35);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--rose);
+            letter-spacing: 0.12em;
+        }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            color: var(--rose);
+            font-weight: 300;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.8rem;
+        }
+
+        .footer-links a {
+            font-size: 0.75rem;
+            color: var(--rose);
+            text-decoration: none;
+            transition: color 0.2s;
+            letter-spacing: 0.08em;
+        }
+
+        .footer-links a:hover {
+            color: var(--rose);
+        }
+
+
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeScale {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 4px rgba(212, 133, 122, 0.2);
+            }
+
+            50% {
+                box-shadow: 0 0 0 8px rgba(212, 133, 122, 0.08);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .fade-in-delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .fade-in-delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        .fade-in-delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 860px) {
+            #hero {
+                grid-template-columns: 1fr;
+                padding: 8rem 5vw 4rem;
+            }
+
+            .hero-image-wrap {
+                display: none;
+            }
+
+            #about {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image-wrap {
+                display: none;
+            }
+
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .booking-iframe {
+                min-height: 550px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="#" class="nav-logo">TAWANNA</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#impact">My Approach</a></li>
+            <li><a href="#book" class="nav-cta">Book a Session</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-text">
+            <p class="hero-eyebrow">Professional Development Advisor</p>
+            <h1 class="hero-headline">
+                You don't need<br />
+                to figure it all out<br />
+                <em>alone.</em>
+            </h1>
+            <p class="hero-sub">
+                I help driven new graduates and professionals bridge the gap between who they are
+                and who they're becoming — with clarity, intention, and zero judgment.
+            </p>
+            <div class="hero-actions">
+                <a href="#book" class="btn-primary">Book a Free Consultation</a>
+                <a href="#about" class="btn-ghost">
+                    See how I help
+                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-image-wrap">
+            <div class="hero-image-card">
+                <img src="C:\Users\carin\Downloads\Tawannaimageone.png" alt="Tawanna"
+                    style="width:100%;height:100%;object-fit:cover;display:block;" />
+            </div>
+            <div class="hero-badge">
+                <div class="hero-badge-dot"></div>
+                <div>
+                    <span>Accepting new clients</span>
+                    <small>Initial sessions available now!</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUSTED -->
+    <section id="trusted">
+        <p class="trusted-label">Trusted by professionals ready to grow with purpose</p>
+        <div class="trusted-logos">
+            <div class="trusted-logo">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.79 13.02H3.55V9h3.58v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.55C0 23.23.79 24 1.77 24h20.44c.98 0 1.79-.77 1.79-1.72V1.73C24 .77 23.2 0 22.22 0Z" />
+                </svg>
+                LinkedIn
+            </div>
+            <div class="trusted-logo">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M11.5 0h1l3 3-3 3h-1l-3-3 3-3zm-8 5h1l3 3-3 3h-1L.5 8l3-3zm16 0h1l3 3-3 3h-1l-3-3 3-3zm-8 8h1l3 3-3 3h-1l-3-3 3-3z" />
+                </svg>
+                Microsoft
+            </div>
+            <div class="trusted-logo"
+                style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;letter-spacing:0.08em;">
+                Deloitte.
+            </div>
+            <div class="trusted-logo"
+                style="font-family:monospace;font-weight:700;letter-spacing:0.05em;font-size:1.1rem;">
+                IBM
+            </div>
+            <div class="trusted-logo">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm0 2.18c5.42 0 9.82 4.4 9.82 9.82 0 5.42-4.4 9.82-9.82 9.82-5.42 0-9.82-4.4-9.82-9.82 0-5.42 4.4-9.82 9.82-9.82zM8.45 7.5L5.73 18.5h2.36l.5-2h3.27l.5 2h2.37L11.6 7.5H8.45zm1.43 2h.27l1.08 5h-2.44l1.09-5z" />
+                </svg>
+                Goldman
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT -->
+    <section id="impact">
+        <div style="text-align:center; max-width:600px; margin:0 auto 1rem;">
+            <p class="section-label fade-in">My Approach</p>
+            <h2 class="section-title fade-in fade-in-delay-1">
+                Support for your <em>career launch,</em><br />and your <em>first steps forward</em>
+            </h2>
+        </div>
+
+        <div class="impact-grid">
+            <div class="impact-card fade-in fade-in-delay-1">
+                <div class="impact-icon">
+                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        stroke-width="1.8">
+                        <path
+                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                </div>
+                <h3>1:1 Career Launch Coaching</h3>
+                <p>Personalized coaching for new graduates who want clarity, confidence, and a practical plan for
+                    entering the workforce.</p>
+            </div>
+            <div class="impact-card fade-in fade-in-delay-2">
+                <div class="impact-icon">
+                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        stroke-width="1.8">
+                        <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <h3>Momentum That Lasts</h3>
+                <p>Forget motivation that fades by Monday. We build systems, habits, and confidence that keep you moving
+                    even when life gets messy.</p>
+            </div>
+            <div class="impact-card fade-in fade-in-delay-3">
+                <div class="impact-icon">
+                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        stroke-width="1.8">
+                        <path
+                            d="M4.318 6.318a4.5 4.5 0 0 0 0 6.364L12 20.364l7.682-7.682a4.5 4.5 0 0 0-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 0 0-6.364 0z" />
+                    </svg>
+                </div>
+                <h3>Whole-Life Thinking</h3>
+                <p>Career, relationships, self-worth — it's all connected. We work on all of it, because your growth
+                    doesn't happen in a silo.</p>
+            </div>
+        </div>
+
+        <div class="impact-headline fade-in" style="margin-top:3.5rem;">
+            <p>"You're not behind. You're not lost. You're exactly where the beginning starts."</p>
+            <span>— Tawanna's Philosophy</span>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="about-image-wrap fade-in">
+            <div class="about-img" style="background: none; box-shadow: none; padding: 0;">
+                <img src="C:\Users\carin\Downloads\Tawannaimagetwo.png" alt="Tawanna portrait"
+                    style="width: 100%; height: auto; display: block; border-radius: 2rem; aspect-ratio: 4/5; object-fit: cover; background: linear-gradient(160deg, var(--mauve-light) 0%, var(--blush) 100%); box-shadow: 0 20px 70px rgba(140, 123, 117, 0.18);" />
+            </div>
+            <div class="about-accent">
+                <strong>25+</strong>
+                <small>years building high-impact teams</small>
+            </div>
+            <div class="about-accent2">
+                <strong>Achievement-Driven<br/>Leader & Trusted Advisor</strong>
+                <small>Connecting people, process, and technology</small>
+            </div>
+        </div>
+
+        <div class="about-text">
+            <p class="section-label fade-in">About Tawanna</p>
+            <h2 class="section-title fade-in fade-in-delay-1">
+                A Strategic Leader Turning Complexity Into Clarity
+            </h2>
+            <p class="fade-in fade-in-delay-2">
+                With 25 years across sales operations, technology consulting, and people & culture, I’m known as the calm in the storm—a connector, collaborator, and cross-functional leader. My reputation? Transforming complexity into clarity, and delivering scalable business outcomes by bringing together people, processes, and technology.
+            </p>
+            <p class="fade-in fade-in-delay-2">
+                I have a track record for building relationships across silos, influencing with or without authority, and driving programs that fuel team performance. I bridge technical and non-technical worlds, shaping narratives that move decisions forward—with a leadership style rooted in empathy, accountability, and purpose.
+            </p>
+            <p class="fade-in fade-in-delay-3">
+                Over my career, I've worked with clients and teams through every chapter of business—whether that’s technology systems, analytics, enterprise sales, or people-first change management. My success comes from moving easily between strategy and execution, asking the right questions, and rallying people around a clear vision. Together, we win or lose—but always together!
+            </p>
+            <div class="about-values fade-in fade-in-delay-3">
+                <div class="about-value">
+                    <div class="value-dot"></div>Trusted Advisor – Build credibility to influence long-term partnerships
+                </div>
+                <div class="about-value">
+                    <div class="value-dot"></div>Consultative Selling – Align solutions to client needs for measurable outcomes
+                </div>
+                <div class="about-value">
+                    <div class="value-dot"></div>Sales Enablement – Lead programs that drive sales velocity & customer engagement
+                </div>
+                <div class="about-value">
+                    <div class="value-dot"></div>Executive Communication – Translate big-picture strategy into clear, actionable messaging
+                </div>
+                <div class="about-value">
+                    <div class="value-dot"></div>Cross-Functional Collaboration – Drive alignment across technical and non-technical teams
+                </div>
+                <div class="about-value">
+                    <div class="value-dot"></div>Process Optimization – Streamline workflows for efficiency & accuracy
+                </div>
+                <div class="about-value">
+                    <div class="value-dot"></div>Strategic Leadership – Develop high-performing teams & lead through change
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOK -->
+    <section id="book">
+        <div class="book-intro">
+            <p class="section-label fade-in">Start Here</p>
+            <h2 class="section-title fade-in fade-in-delay-1">
+                Ready to build your<br /><em>career confidence?</em>
+            </h2>
+            <p class="fade-in fade-in-delay-2" style="margin-top:1rem;">
+                Book a career strategy session to discuss your goals, strengthen your next steps, and create a focused
+                plan for
+                launching your career with confidence.
+            </p>
+        </div>
+        <div class="booking-iframe-container fade-in fade-in-delay-2">
+            <iframe class="booking-iframe" title="Book a time"
+                src="https://cal.com/carinne-tzurdecker-rwwlw0?theme=light" frameborder="0" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <span class="footer-logo">TAWANNA</span>
+        <span class="footer-copy">© 2026 Tawanna. All rights reserved.</span>
+        <div class="footer-links">
+            <a href="mailto:carinnetz@gmail.com">Email</a>
+            <a href="#book">Book a Session</a>
+            <a href="https://www.linkedin.com/in/tawanna-atwater/" target="_blank"
+                rel="noopener noreferrer">LinkedIn</a>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for scroll-triggered fade-ins
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Staggered impact cards
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const cards = entry.target.querySelectorAll('.impact-card');
+                    cards.forEach((card, i) => {
+                        setTimeout(() => card.classList.add('visible'), i * 140);
+                    });
+                    cardObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        const grid = document.querySelector('.impact-grid');
+        if (grid) cardObserver.observe(grid);
+    </script>
+</body>
+
+</html>
