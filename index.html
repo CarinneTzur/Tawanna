@@ -749,43 +749,134 @@
 
         /* ─── BOOK ─── */
         #book {
-            padding: 6rem 5vw;
+            padding: 5.5rem 5vw;
             background: var(--white);
             text-align: center;
         }
 
-        .book-intro {
-            max-width: 560px;
-            margin: 0 auto 3.5rem;
-        }
-
-        .book-intro .section-title {
-            margin-bottom: 1rem;
-        }
-
-        .book-intro p {
-            font-size: 0.95rem;
-            font-weight: 300;
-            line-height: 1.8;
-            color: var(--stone);
-        }
-
-        .booking-iframe-container {
-            max-width: 860px;
+        .book-panel {
+            max-width: 900px;
             margin: 0 auto;
-            border-radius: 2rem;
-            overflow: hidden;
-            box-shadow: 0 24px 80px rgba(140, 123, 117, 0.14);
-            border: 1px solid rgba(201, 168, 178, 0.25);
-            margin-bottom: 3.5rem;
+            padding: clamp(2.1rem, 4vw, 3.2rem);
+            border-radius: 1.6rem;
+            background: var(--cream);
+            border: 1px solid rgba(201, 168, 178, 0.24);
+            box-shadow: 0 14px 46px rgba(140, 123, 117, 0.1);
         }
 
-        .booking-iframe {
-            width: 100%;
-            min-height: 700px;
-            border: 0;
-            display: block;
+        .book-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .book-kicker {
+            font-size: 0.72rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--rose);
+            font-weight: 500;
+            margin-bottom: 0.9rem;
+        }
+
+        .book-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.1rem, 4vw, 3.2rem);
+            font-weight: 300;
+            line-height: 1.12;
+            color: var(--ink);
+        }
+
+        .book-title em {
+            color: var(--rose-deep);
+            font-style: italic;
+        }
+
+        .book-subtext {
+            max-width: 560px;
+            margin: 1rem auto 0;
+            font-size: 0.98rem;
+            font-weight: 300;
+            line-height: 1.75;
+            color: var(--ink-light);
+        }
+
+        .book-actions-wrap {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(240px, 1fr));
+            gap: 1rem;
+            justify-content: center;
+            align-items: stretch;
+            margin: 2rem auto 0;
+            max-width: 640px;
+        }
+
+        .book-action-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.38rem;
+            min-height: 124px;
+            padding: 1.15rem 1.3rem;
+            border-radius: 1.15rem;
+            text-decoration: none;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+        }
+
+        .book-action-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .book-action-card strong {
+            font-size: 0.98rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .book-action-card span {
+            font-size: 0.82rem;
+            font-weight: 300;
+            line-height: 1.45;
+        }
+
+        .book-action-primary {
+            background: var(--rose);
+            color: #fff;
+            box-shadow: 0 10px 28px rgba(212, 133, 122, 0.26);
+        }
+
+        .book-action-primary:hover {
+            background: var(--rose-deep);
+            box-shadow: 0 14px 34px rgba(212, 133, 122, 0.34);
+        }
+
+        .book-action-secondary {
             background: #fff;
+            color: var(--ink);
+            border: 1px solid rgba(201, 168, 178, 0.38);
+            box-shadow: 0 10px 28px rgba(140, 123, 117, 0.08);
+        }
+
+        .book-action-secondary strong {
+            color: var(--rose-deep);
+        }
+
+        .book-action-secondary span {
+            color: var(--ink-light);
+        }
+
+        .book-action-secondary:hover {
+            border-color: rgba(212, 133, 122, 0.55);
+            box-shadow: 0 14px 34px rgba(140, 123, 117, 0.12);
+        }
+
+        .book-note {
+            margin-top: 1.35rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--stone);
         }
 
         /* ─── FOOTER ─── */
@@ -921,6 +1012,14 @@
             .booking-iframe {
                 min-height: 550px;
             }
+
+            .book-actions-wrap {
+                grid-template-columns: 1fr;
+            }
+
+            .book-action-card {
+                min-height: 126px;
+            }
         }
     </style>
 </head>
@@ -933,15 +1032,15 @@
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#impact">My Approach</a></li>
-            <li><a href="#book" class="nav-cta">Book a Session</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="payment.html#book" class="nav-cta">Book Session</a></li>
         </ul>
     </nav>
 
     <!-- HERO -->
     <section id="hero">
         <div class="hero-text">
-            <img class="hero-mobile-photo" src="Tawannaimagethree.png"
-                alt="Tawanna portrait" />
+            <img class="hero-mobile-photo" src="Tawannaimageone.png" alt="Tawanna portrait" />
             <p class="hero-eyebrow">Professional Development Advisor</p>
             <h1 class="hero-headline">
                 You don't need<br />
@@ -953,7 +1052,7 @@
                 and who they're becoming — with clarity, intention, and zero judgment.
             </p>
             <div class="hero-actions">
-                <a href="#book" class="btn-primary">Book a Free Consultation</a>
+                <a href="payment.html#book" class="btn-primary">Book a Free Consultation</a>
                 <a href="#testimonials" class="btn-ghost">
                     See how I help
                     <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -979,23 +1078,23 @@
     </section>
 
     <!-- TRUSTED -->
-<section id="trusted">
-    <p class="trusted-label">Trusted by professionals ready to grow with purpose</p>
-    <div class="trusted-logos">
-        <div class="trusted-logo" style="font-family:Arial, sans-serif;font-weight:700;letter-spacing:0.02em;">
-            AT&amp;T
-        </div>
+    <section id="trusted">
+        <p class="trusted-label">Trusted by professionals ready to grow with purpose</p>
+        <div class="trusted-logos">
+            <div class="trusted-logo" style="font-family:Arial, sans-serif;font-weight:700;letter-spacing:0.02em;">
+                AT&amp;T
+            </div>
 
-        <div class="trusted-logo" style="font-family:Arial, sans-serif;font-weight:700;letter-spacing:0.02em;">
-            HD Supply
-        </div>
+            <div class="trusted-logo" style="font-family:Arial, sans-serif;font-weight:700;letter-spacing:0.02em;">
+                HD Supply
+            </div>
 
-        <div class="trusted-logo" style="font-family:Arial, sans-serif;font-weight:700;letter-spacing:0.01em;">
-            Dell Technologies
+            <div class="trusted-logo" style="font-family:Arial, sans-serif;font-weight:700;letter-spacing:0.01em;">
+                Dell Technologies
+            </div>
         </div>
-    </div>
-</section>
-    
+    </section>
+
     <!-- IMPACT -->
     <section id="impact">
         <div style="text-align:center; max-width:600px; margin:0 auto 1rem;">
@@ -1131,7 +1230,8 @@
         <div class="testimonials-wrap fade-in fade-in-delay-2">
             <div class="testimonial-card" id="testimonialCard">
                 <p class="testimonial-quote" id="testimonialQuote">
-                    "Tawanna has been instrumental in helping our organization develop and evolve our DEI practice. She is an empathetic, approachable leader who inspires trust and confidence."
+                    "Tawanna has been instrumental in helping our organization develop and evolve our DEI practice. She
+                    is an empathetic, approachable leader who inspires trust and confidence."
                 </p>
                 <p class="testimonial-meta" id="testimonialMeta">
                     <span class="testimonial-name">Krysia Whitley Clarke, MBA</span> | Experienced Finance Leader
@@ -1145,32 +1245,37 @@
                 <button class="testimonial-chip" data-index="4" type="button">Christina</button>
             </div>
             <div class="testimonial-controls">
-                <button class="testimonial-arrow" id="testimonialPrev" type="button" aria-label="Previous testimonial">&#8592;</button>
-                <button class="testimonial-arrow" id="testimonialNext" type="button" aria-label="Next testimonial">&#8594;</button>
+                <button class="testimonial-arrow" id="testimonialPrev" type="button"
+                    aria-label="Previous testimonial">&#8592;</button>
+                <button class="testimonial-arrow" id="testimonialNext" type="button"
+                    aria-label="Next testimonial">&#8594;</button>
             </div>
         </div>
     </section>
 
     <!-- BOOK -->
     <section id="book">
-        <div class="book-intro">
-            <p class="section-label fade-in">Start Here</p>
-            <h2 class="section-title fade-in fade-in-delay-1">
-                Ready to build your<br /><em>career confidence?</em>
-            </h2>
-            <p class="fade-in fade-in-delay-2" style="margin-top:1rem;">
-                Book a career strategy session to discuss your goals, strengthen your next steps, and create a focused
-                plan for
-                launching your career with confidence.
-            </p>
-        </div>
-        <div class="booking-iframe-container fade-in fade-in-delay-2">
-            <iframe class="booking-iframe" title="Book a time"
-                src="https://cal.com/carinne-tzurdecker-rwwlw0?theme=light" frameborder="0" loading="lazy"></iframe>
+        <div class="book-panel fade-in">
+            <div class="book-content">
+                <p class="book-kicker">Ready for your next step?</p>
+                <h2 class="book-title">Start with the option that fits <em>your next step.</em></h2>
+                <p class="book-subtext">
+                    First book a session, then use the payment option when you are ready to secure your session.
+                </p>
+                <div class="book-actions-wrap">
+                    <a href="payment.html#book" class="book-action-card book-action-primary">
+                        <strong>Book a Session</strong>
+                        <span>Choose a time that works for you</span>
+                    </a>
+                    <a href="https://buy.stripe.com/test_6oE8xhrbR7gybhC4gg"
+                        class="book-action-card book-action-secondary" target="_blank" rel="noopener">
+                        <strong>Pay for a Session</strong>
+                        <span>Secure your spot after booking</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
-
-    
 
     <!-- FOOTER -->
     <footer>
@@ -1178,7 +1283,7 @@
         <span class="footer-copy">© 2026 Tawanna. All rights reserved.</span>
         <div class="footer-links">
             <a href="mailto:atwaterta@gmail.com">Email</a>
-            <a href="#book">Book a Session</a>
+            <a href="payment.html#book">Book a Session</a>
             <a href="https://www.linkedin.com/in/tawanna-atwater/" target="_blank"
                 rel="noopener noreferrer">LinkedIn</a>
         </div>
