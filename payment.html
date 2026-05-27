@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pay for Your Session | Tawanna</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --white: #FDFCFB;
+            --cream: #F7F3EF;
+            --blush: #F2D9D5;
+            --rose: #D4857A;
+            --rose-deep: #B8655A;
+            --mauve: #C9A8B2;
+            --mauve-light: #EDE0E5;
+            --stone: #8C7B75;
+            --ink: #2C2422;
+            --ink-light: #5C4F4B;
+            --gold: #C8A882;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--white);
+            color: var(--ink);
+            overflow-x: hidden;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.4rem 5vw;
+            background: rgba(253, 252, 251, 0.88);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(201, 168, 178, 0.2);
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            color: var(--ink);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.78rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink-light);
+            text-decoration: none;
+            transition: color 0.25s;
+        }
+
+        .nav-links a:hover {
+            color: var(--rose);
+        }
+
+        .nav-cta {
+            background: var(--rose);
+            color: #fff !important;
+            padding: 0.55rem 1.4rem;
+            border-radius: 50px;
+            transition: background 0.25s !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--rose-deep) !important;
+            color: #fff !important;
+        }
+
+        /* ── SHARED SECTION HELPERS ── */
+        .section-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--rose);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 300;
+            line-height: 1.15;
+            color: var(--ink);
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--rose-deep);
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            background: var(--rose);
+            color: #fff;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+            box-shadow: 0 4px 24px rgba(212, 133, 122, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--rose-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(212, 133, 122, 0.4);
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.2s;
+        }
+
+        .btn-ghost:hover {
+            color: var(--rose);
+        }
+
+        /* ── FADE-IN ANIMATION ── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-delay-1 {
+            transition-delay: 0.12s;
+        }
+
+        .fade-in-delay-2 {
+            transition-delay: 0.24s;
+        }
+
+        /* ── BOOK SECTION ── */
+        #book {
+            min-height: 100vh;
+            padding: 10rem 5vw 6rem;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .book-intro {
+            max-width: 620px;
+            text-align: center;
+            margin: 0 auto 3rem;
+        }
+
+        .book-intro p {
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--stone);
+            margin-top: 1rem;
+        }
+
+        .booking-iframe-container {
+            width: 100%;
+            max-width: 1120px;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 24px 80px rgba(140, 123, 117, 0.12);
+            border: 1px solid rgba(201, 168, 178, 0.22);
+            background: var(--white);
+            min-height: 700px;
+        }
+
+        .booking-iframe {
+            width: 100%;
+            height: 700px;
+            border: none;
+            display: block;
+        }
+
+        /* ── STRIPE / PAYMENTS SECTION ── */
+        #stripe-payments {
+            min-height: 100vh;
+            padding: 8rem 5vw 6rem;
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .stripe-intro {
+            max-width: 760px;
+            margin: 0 auto 2rem;
+        }
+
+        .stripe-intro .section-title {
+            margin-bottom: 0.75rem;
+        }
+
+        .stripe-intro p {
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.7;
+            color: var(--stone);
+        }
+
+        .payment-step {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            padding: 0.42rem 0.8rem;
+            border-radius: 999px;
+            background: var(--white);
+            border: 1px solid rgba(201, 168, 178, 0.35);
+            color: var(--rose-deep);
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .payment-banner {
+            max-width: 620px;
+            margin: 0 auto 2rem;
+            padding: 1rem 1.4rem;
+            border-radius: 1rem;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .payment-banner.visible {
+            display: block;
+        }
+
+        .payment-banner.success {
+            background: rgba(212, 133, 122, 0.15);
+            border: 1px solid rgba(212, 133, 122, 0.35);
+            color: var(--ink);
+        }
+
+        .payment-banner.canceled {
+            background: var(--white);
+            border: 1px solid rgba(201, 168, 178, 0.35);
+            color: var(--ink-light);
+        }
+
+        .stripe-payment-card {
+            max-width: 1120px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 2rem;
+            border: 1px solid rgba(201, 168, 178, 0.32);
+            box-shadow: 0 18px 55px rgba(140, 123, 117, 0.1);
+            padding: 2.25rem;
+            text-align: center;
+        }
+
+        .stripe-payment-copy {
+            max-width: 720px;
+            margin: 0 auto 2rem;
+        }
+
+        .stripe-payment-copy h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.7rem, 2.8vw, 2.35rem);
+            font-weight: 400;
+            color: var(--ink);
+            margin-bottom: 0.65rem;
+        }
+
+        .stripe-payment-copy p {
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--ink-light);
+        }
+
+        .stripe-trust-row {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-top: 1.4rem;
+        }
+
+        .stripe-trust-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            background: var(--white);
+            border: 1px solid rgba(201, 168, 178, 0.35);
+            border-radius: 999px;
+            padding: 0.55rem 0.9rem;
+            font-size: 0.74rem;
+            color: var(--ink-light);
+        }
+
+        .stripe-check {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--blush);
+            color: var(--rose-deep);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.72rem;
+            font-weight: 600;
+        }
+
+        .stripe-payment-box {
+            width: 100%;
+        }
+
+        .stripe-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--rose-deep);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .stripe-options-group {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.1rem;
+            margin-bottom: 1.8rem;
+        }
+
+        @media (max-width: 720px) {
+            .stripe-options-group {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .stripe-option-card {
+            position: relative;
+            min-height: 100%;
+            background: var(--white);
+            border: 1px solid rgba(201, 168, 178, 0.38);
+            border-radius: 1.5rem;
+            padding: 1.55rem 1.35rem;
+            cursor: pointer;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+
+        .stripe-option-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(212, 133, 122, 0.55);
+            box-shadow: 0 14px 42px rgba(140, 123, 117, 0.12);
+        }
+
+        .stripe-option-card.selected {
+            background: linear-gradient(180deg, #fff 0%, rgba(242, 217, 213, 0.24) 100%);
+            border-color: var(--rose);
+            box-shadow: 0 18px 55px rgba(212, 133, 122, 0.18);
+            transform: translateY(-6px);
+        }
+
+        .stripe-option-card.featured {
+            border-width: 2px;
+        }
+
+        .stripe-option-card.featured::before {
+            content: 'Start Here';
+            position: absolute;
+            top: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--rose);
+            color: #fff;
+            border-radius: 999px;
+            padding: 0.35rem 0.8rem;
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            box-shadow: 0 8px 22px rgba(212, 133, 122, 0.28);
+        }
+
+        .stripe-option-radio {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .stripe-card-kicker {
+            font-size: 0.68rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--rose-deep);
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .stripe-option-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.45rem;
+            color: var(--ink);
+            font-weight: 500;
+            line-height: 1.15;
+            margin-bottom: 0.65rem;
+        }
+
+        .stripe-option-desc {
+            font-size: 0.86rem;
+            color: var(--ink-light);
+            font-weight: 300;
+            line-height: 1.65;
+            margin-bottom: 1.2rem;
+        }
+
+        .stripe-option-price {
+            font-size: 2.45rem;
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--ink);
+            font-weight: 500;
+            line-height: 1;
+            margin-top: auto;
+        }
+
+        .stripe-option-price span {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.76rem;
+            color: var(--stone);
+            font-weight: 300;
+            margin-left: 0.25rem;
+        }
+
+        .stripe-card-divider {
+            height: 1px;
+            width: 100%;
+            background: rgba(201, 168, 178, 0.35);
+            margin: 1.2rem 0;
+        }
+
+        .stripe-card-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .stripe-card-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.55rem;
+            font-size: 0.78rem;
+            color: var(--ink-light);
+            line-height: 1.5;
+        }
+
+        .stripe-card-list li::before {
+            content: '✓';
+            color: var(--rose-deep);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .stripe-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .stripe-actions .btn-primary,
+        .stripe-actions .btn-ghost {
+            justify-content: center;
+            text-align: center;
+        }
+
+        .stripe-actions button.btn-primary {
+            border: 0;
+            cursor: pointer;
+            font-family: inherit;
+            min-width: 260px;
+            padding: 1rem 2.6rem;
+            font-size: 0.9rem;
+        }
+
+        .stripe-actions button.btn-primary:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .stripe-status {
+            margin-top: 0.8rem;
+            font-size: 0.74rem;
+            color: var(--rose-deep);
+            line-height: 1.5;
+            min-height: 1.1rem;
+        }
+
+        .stripe-secure-note {
+            margin-top: 1rem;
+            font-size: 0.72rem;
+            color: var(--stone);
+            line-height: 1.5;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            padding: 2.5rem 5vw;
+            background: var(--cream);
+            border-top: 1px solid rgba(212, 133, 122, 0.35);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--rose);
+            letter-spacing: 0.12em;
+        }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            color: var(--rose);
+            font-weight: 300;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.8rem;
+        }
+
+        .footer-links a {
+            font-size: 0.75rem;
+            color: var(--rose);
+            text-decoration: none;
+            transition: color 0.2s;
+            letter-spacing: 0.08em;
+        }
+
+        .footer-links a:hover {
+            color: var(--rose-deep);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-logo">TAWANNA</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#book">Book a Session</a></li>
+            <li><a href="#stripe-payments">Payment</a></li>
+        </ul>
+    </nav>
+
+    <!-- BOOK -->
+    <section id="book">
+        <div class="book-intro">
+            <p class="section-label fade-in">Step 1</p>
+            <h1 class="section-title fade-in fade-in-delay-1">
+                Book your session time.
+            </h1>
+            <p class="fade-in fade-in-delay-2">
+                Use the calendar below to reserve your session. After your time is booked, continue to the payment
+                section
+                and select the session type that matches your booking.
+            </p>
+        </div>
+        <div class="booking-iframe-container fade-in fade-in-delay-2">
+            <iframe class="booking-iframe" title="Book a time"
+                src="https://cal.com/carinne-tzurdecker-rwwlw0?theme=light" frameborder="0" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <main id="stripe-payments">
+        <div class="stripe-intro">
+            <span class="payment-step fade-in">Step 2</span>
+            <h1 class="section-title fade-in fade-in-delay-1">
+                Complete your payment.
+            </h1>
+            <p class="fade-in fade-in-delay-2">
+                Select the option you booked, then pay securely through Stripe.
+            </p>
+        </div>
+
+        <div class="payment-banner fade-in fade-in-delay-1" id="paymentBanner" role="status"></div>
+
+        <div class="stripe-payment-card fade-in fade-in-delay-2">
+            <div class="stripe-payment-copy">
+                <h2>Pay for your scheduled session</h2>
+                <p>
+                    Choose the session type you selected in the calendar above. Checkout will open in Stripe.
+                </p>
+            </div>
+
+            <div class="stripe-payment-box">
+
+                <p class="stripe-label">Select Payment Option</p>
+                <div style="height: 12px;"></div>
+
+                <form id="stripeSessionForm" class="stripe-options-group" autocomplete="off">
+                    <label class="stripe-option-card" data-service="60min-strategy-session">
+                        <input type="radio" class="stripe-option-radio" name="sessionType"
+                            value="60min-strategy-session" />
+                        <span class="stripe-card-kicker">60 Minute Session</span>
+                        <span class="stripe-option-title">Follow-Up Session</span>
+                        <span class="stripe-option-desc">Use this option if you booked a 60 minute follow-up
+                            appointment.</span>
+                        <span class="stripe-option-price">$110<span>/ 60 min</span></span>
+                        <span class="stripe-card-divider"></span>
+                        <ul class="stripe-card-list">
+                            <li>For returning clients</li>
+                            <li>Matches a 60 minute booking</li>
+                            <li>Secure Stripe checkout</li>
+                        </ul>
+                    </label>
+
+                    <label class="stripe-option-card featured selected" data-service="initial-strategy-session">
+                        <input type="radio" class="stripe-option-radio" name="sessionType"
+                            value="initial-strategy-session" checked />
+                        <span class="stripe-card-kicker">Initial Session</span>
+                        <span class="stripe-option-title">Initial 1:1 Session</span>
+                        <span class="stripe-option-desc">Use this option if you booked your first 60 minute
+                            session.</span>
+                        <span class="stripe-option-price">$120<span>/ 60 min</span></span>
+                        <span class="stripe-card-divider"></span>
+                        <ul class="stripe-card-list">
+                            <li>For first-time clients</li>
+                            <li>Matches a 60 minute booking</li>
+                            <li>Secure Stripe checkout</li>
+                        </ul>
+                    </label>
+
+                    <label class="stripe-option-card" data-service="90min-strategy-session">
+                        <input type="radio" class="stripe-option-radio" name="sessionType"
+                            value="90min-strategy-session" />
+                        <span class="stripe-card-kicker">90 Minute Session</span>
+                        <span class="stripe-option-title">Extended Session</span>
+                        <span class="stripe-option-desc">Use this option if you booked a longer 90 minute
+                            appointment.</span>
+                        <span class="stripe-option-price">$150<span>/ 90 min</span></span>
+                        <span class="stripe-card-divider"></span>
+                        <ul class="stripe-card-list">
+                            <li>For extended appointments</li>
+                            <li>Matches a 90 minute booking</li>
+                            <li>Secure Stripe checkout</li>
+                        </ul>
+                    </label>
+                </form>
+
+                <div class="stripe-actions">
+                    <button class="btn-primary" id="stripeCheckoutButton" type="button">Pay for Initial
+                        Session</button>
+                    <a href="#book" class="btn-ghost">Need to book first?</a>
+                </div>
+                <p class="stripe-status" id="stripeStatus" aria-live="polite"></p>
+                <p class="stripe-secure-note">
+                    Payments are handled through Stripe's secure checkout.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <span class="footer-logo">TAWANNA</span>
+        <span class="footer-copy">© 2026 Tawanna. All rights reserved.</span>
+        <div class="footer-links">
+            <a href="mailto:atwaterta@gmail.com">Email</a>
+            <a href="#book">Book a Session</a>
+            <a href="https://www.linkedin.com/in/tawanna-atwater/" target="_blank"
+                rel="noopener noreferrer">LinkedIn</a>
+        </div>
+    </footer>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fade-in observer
+            const observer = new window.IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+            // Payment banner
+            const paymentBanner = document.getElementById('paymentBanner');
+            const params = new URLSearchParams(window.location.search);
+
+            if (paymentBanner) {
+                if (params.get('success') === 'true') {
+                    paymentBanner.textContent = 'Thank you, your payment was successful. You will receive a confirmation email shortly.';
+                    paymentBanner.classList.add('visible', 'success');
+                } else if (params.get('canceled') === 'true') {
+                    paymentBanner.textContent = 'Payment was canceled. You can try again whenever you are ready.';
+                    paymentBanner.classList.add('visible', 'canceled');
+                }
+            }
+
+            // Stripe
+            const stripePublishableKey = 'pk_test_51TbTnEEYPOmTaGPGK7KJNo7a953xDUAFSbSpFUXCai3pa1X1DAHREphq4up6gVVribglDAAAkrDiuM7yf4PRMkUL009VVdQ4tc';
+            const stripeCheckoutEndpoint = '/create-checkout-session';
+            const stripeCheckoutButton = document.getElementById('stripeCheckoutButton');
+            const stripeStatus = document.getElementById('stripeStatus');
+            const sessionForm = document.getElementById('stripeSessionForm');
+            let stripe = null;
+
+            function loadStripe() {
+                if (window.Stripe && !stripe) {
+                    stripe = window.Stripe(stripePublishableKey);
+                }
+            }
+
+            if (window.Stripe) {
+                loadStripe();
+            } else {
+                let stripeScript = document.querySelector('script[src*="stripe.com"]');
+                if (stripeScript) stripeScript.addEventListener('load', loadStripe);
+            }
+
+            const checkoutButtonLabels = {
+                '60min-strategy-session': 'Pay for Follow-Up Session',
+                'initial-strategy-session': 'Pay for Initial Session',
+                '90min-strategy-session': 'Pay for Extended Session'
+            };
+
+            function updateSelectionFromRadio() {
+                if (!sessionForm) return;
+                const radios = sessionForm.querySelectorAll('input[name="sessionType"]');
+                radios.forEach(radio => {
+                    const card = radio.closest('.stripe-option-card');
+                    if (card) {
+                        if (radio.checked) {
+                            card.classList.add('selected');
+                            if (stripeCheckoutButton) {
+                                stripeCheckoutButton.textContent = checkoutButtonLabels[radio.value] || 'Pay with Stripe';
+                            }
+                        } else {
+                            card.classList.remove('selected');
+                        }
+                    }
+                });
+            }
+            updateSelectionFromRadio();
+
+            if (sessionForm) {
+                sessionForm.addEventListener('change', function (e) {
+                    if (e.target.name === 'sessionType') updateSelectionFromRadio();
+                });
+            }
+
+            function getSelectedSessionType() {
+                if (!sessionForm) return 'initial-strategy-session';
+                const selected = sessionForm.querySelector('input[name="sessionType"]:checked');
+                return selected ? selected.value : 'initial-strategy-session';
+            }
+
+            async function startStripeCheckout() {
+                if (!stripeCheckoutButton || !stripeStatus) return;
+                loadStripe();
+                if (!stripe) {
+                    stripeStatus.textContent = 'Stripe could not load. Please refresh the page and try again.';
+                    return;
+                }
+
+                stripeCheckoutButton.disabled = true;
+                stripeCheckoutButton.textContent = 'Opening Checkout...';
+                stripeStatus.textContent = '';
+
+                const selectedService = getSelectedSessionType();
+
+                try {
+                    const response = await fetch(stripeCheckoutEndpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ service: selectedService })
+                    });
+
+                    if (!response.ok) {
+                        let message = 'Checkout endpoint is not configured yet.';
+                        try {
+                            const errData = await response.json();
+                            if (errData && errData.error) message = errData.error;
+                        } catch { }
+                        throw new Error(message);
+                    }
+
+                    const data = await response.json();
+                    if (!data.sessionId) throw new Error('No Stripe Checkout Session ID was returned.');
+
+                    const result = await stripe.redirectToCheckout({ sessionId: data.sessionId });
+                    if (result.error) throw new Error(result.error.message);
+
+                } catch (error) {
+                    stripeStatus.textContent = error && error.message ? error.message : 'Unable to start checkout right now.';
+                    stripeCheckoutButton.disabled = false;
+                    stripeCheckoutButton.textContent = checkoutButtonLabels[getSelectedSessionType()] || 'Pay with Stripe';
+                }
+            }
+
+            if (stripeCheckoutButton) {
+                stripeCheckoutButton.addEventListener('click', startStripeCheckout);
+            }
+        });
+    </script>
+</body>
+
+</html>
